@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/183c191db3.js" crossorigin="anonymous"></script>
+    <style>
+        #nav {
+            width: 100%;
+            border: 1px solid black;
+            height: 50px;
+        }
+        #navbar{
+            display: flex;
+            justify-content: right;
+        
+        }
+        #navbar >div{
+            margin-right: 50px;
+            font-size: 20px;
+            margin-top: 10px;
+        }
+
+        #main{
+            width: 100%;
+            height: 100px;
+            margin-top: 50px;
+            margin-left: 650px;
+             
+        }
+
+        #search{
+            padding-left: 20px;
+            padding-right: 20px;
+            padding: 10px;
+        }
+
+        #con{
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 20px;
+        }
+
+        #con >div{
+            margin-left: 10px;
+            background-color: whitesmoke;
+
+        }
+        img{
+            margin-left: 100px;
+        }
+
+        p{
+            text-align: center;
+        }
+
+        .fa-solid{
+            margin-left: 9px;
+            border: 1px solid black;
+            padding: 9px;
+            margin-right: 1100px;
+            margin-top: 5px;
+
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container"> 
+    <div id="nav">
+        
+        <!-- <div id="navbar"> 
+        <div>home</div>
+        <div>login</div>
+        <div>signup</div>
+    </div> -->
+    </div>
+
+    <div id="main">
+      
+        <input type="text" name="search" id="search"  placeholder="search"  > <i class="fa-solid fa-magnifying-glass"></i>
+        
+      
+    </div>
+
+    <div id="con">
+
+    </div>
+</div>
+</body>
+</html> 
+
+<script type="module">
+
+    import navbar from  "./components/navbar.js"
+
+    
+
+    var nav = document.getElementById("nav")
+  nav.innerHTML= navbar()
+
+
+
+import {get } from  "./scripts/index.js"
+   
+
+
+var input = document.getElementById("search");
+  input.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      var input = document.getElementById("search").value;
+      localStorage.setItem("search_term", input);
+      window.location.href = "search.html";
+    }
+  });
+
+
+
+  import {append} from  "./scripts/index.js"
+   
+
+  
+ 
+
+
+
+
+   var res = await get( `https://www.themealdb.com/api/json/v1/1/categories.php`)
+
+console.log(res)
+
+var parent = document.getElementById("con")
+  append(res.categories,parent)
+  
+ 
+</script>
+
+
+
+
+<!-- www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata -->
+
+
+ 
